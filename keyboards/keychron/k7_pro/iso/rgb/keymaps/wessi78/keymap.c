@@ -61,3 +61,28 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______,  _______,  _______,  _______,  _______,  _______,  BAT_LVL,  _______,  _______,  _______,  _______,  _______,            _______,  _______,  _______,
         _______,  _______,  _______,                                _______,                                _______,  _______,  _______,  _______,  _______,  _______),
 };
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case LT(0,KC_X):
+            if (!record->tap.count && record->event.pressed) {
+                tap_code16(C(KC_X)); // Intercept hold function to send Ctrl-X
+                return false;
+            }
+            return true;             // Return true for normal processing of tap keycode
+        case LT(0,KC_C):
+            if (!record->tap.count && record->event.pressed) {
+                tap_code16(C(KC_C)); // Intercept hold function to send Ctrl-C
+                return false;
+            }
+            return true;             // Return true for normal processing of tap keycode
+        case LT(0,KC_V):
+            if (!record->tap.count && record->event.pressed) {
+                tap_code16(C(KC_V)); // Intercept hold function to send Ctrl-V
+                return false;
+            }
+            return true;             // Return true for normal processing of tap keycode
+    }
+    return true;
+}
+
