@@ -25,6 +25,9 @@
 /* RGB Matrix Configuration */
 #    define RGB_MATRIX_LED_COUNT 69
 
+/* Tapping Configuration */
+#   define TAPPING_TERM 225
+
 /* Set to infinit, which is use in USB mode by default
  */
 #    define RGB_MATRIX_TIMEOUT RGB_MATRIX_TIMEOUT_INFINITE
