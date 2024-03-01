@@ -14,6 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "rgb_matrix.h"
 #include QMK_KEYBOARD_H
 
 // clang-format off
@@ -113,7 +114,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 return false;
             }
             return true;             // Return true for normal processing of tap keycode
-        case LT(0,KC_Z):
+        case LT(0,KC_Y):
             if (!record->tap.count && record->event.pressed) {
                 tap_code16(LCMD(KC_Z)); // Intercept hold function to send CMD-Z
                 return false;
@@ -135,3 +136,91 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     return true;
 }
 
+//RGB Matrix Definition for each Layer
+/*layer_state_t layer_state_set_user(layer_state_t state) {
+    switch (get_highest_layer(state)) {
+    case MAC_BASE:
+        //rgb_matrix_set_color_all(0, 0, 255); //blue
+        rgb_matrix_reload_from_eeprom();
+        break;
+    case WIN_BASE:
+        //rgb_matrix_set_color_all(255, 0, 0);//red
+        rgb_matrix_reload_from_eeprom();
+        break;
+    case MAC_FN1:
+        rgb_matrix_mode_noeeprom(RGB_MATRIX_NONE);
+        rgb_matrix_set_color_all(255, 255, 0); //yellow
+        break;
+    case WIN_FN1:
+        rgb_matrix_mode_noeeprom(RGB_MATRIX_NONE);
+        rgb_matrix_set_color_all(255, 165, 0); //orange
+        break;
+    case FN2:
+        rgb_matrix_mode_noeeprom(RGB_MATRIX_NONE);
+        rgb_matrix_set_color_all(0, 255, 0); //green
+        break;
+    default: //  for any other layers, or the default layer
+        //rgb_matrix_set_color_all(255, 255, 255); //white
+        rgb_matrix_reload_from_eeprom();
+        break;
+    }
+  return state;
+}*/
+
+//RGB Control based on the method Moonlander is handling this
+extern rgb_config_t rgb_matrix_config;
+
+void keyboard_post_init_user(void) {
+  rgb_matrix_enable();
+}
+
+const uint8_t PROGMEM ledmap[][RGB_MATRIX_LED_COUNT][3] = {
+    [1] = {{0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0} },
+
+    [2] = {{32,255,255}, {32,255,255}, {32,255,255}, {32,255,255}, {32,255,255}, {32,255,255}, {32,255,255}, {32,255,255}, {32,255,255}, {32,255,255}, {32,255,255}, {32,255,255}, {32,255,255}, {0,0,0}, {0,0,0}, {0,0,0}, {152,255,255}, {152,255,255}, {152,255,255}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {202,218,204}, {202,218,204}, {202,218,204}, {202,218,204}, {202,218,204}, {202,218,204}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {202,218,204}, {202,218,204}, {202,218,204}, {202,218,204}, {202,218,204}, {202,218,204}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0} },
+
+    [3] = {{0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0} },
+
+    [4] = {{32,255,255}, {32,255,255}, {32,255,255}, {32,255,255}, {32,255,255}, {32,255,255}, {32,255,255}, {32,255,255}, {32,255,255}, {32,255,255}, {32,255,255}, {32,255,255}, {32,255,255}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {74,255,255}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0} },
+
+};
+
+void set_layer_color(int layer) {
+  for (int i = 0; i < RGB_MATRIX_LED_COUNT; i++) {
+    HSV hsv = {
+      .h = pgm_read_byte(&ledmap[layer][i][0]),
+      .s = pgm_read_byte(&ledmap[layer][i][1]),
+      .v = pgm_read_byte(&ledmap[layer][i][2]),
+    };
+    if (!hsv.h && !hsv.s && !hsv.v) {
+        rgb_matrix_set_color( i, 0, 0, 0 );
+    } else {
+        RGB rgb = hsv_to_rgb( hsv );
+        float f = (float)rgb_matrix_config.hsv.v / UINT8_MAX;
+        rgb_matrix_set_color( i, f * rgb.r, f * rgb.g, f * rgb.b );
+    }
+  }
+}
+
+bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
+  /*if (rawhid_state.rgb_control) {
+      return false;
+  }
+  if (keyboard_config.disable_layer_led) { return false; }*/
+  switch (biton32(layer_state)) {
+    case 2:
+      set_layer_color(2);
+      break;
+    case 3:
+      set_layer_color(3);
+      break;
+    case 4:
+      set_layer_color(4);
+      break;
+   default:
+    if (rgb_matrix_get_flags() == LED_FLAG_NONE)
+      rgb_matrix_set_color_all(0, 0, 0);
+    break;
+  }
+  return true;
+}

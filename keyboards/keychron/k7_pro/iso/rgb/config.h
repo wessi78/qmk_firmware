@@ -25,9 +25,6 @@
 /* RGB Matrix Configuration */
 #    define RGB_MATRIX_LED_COUNT 69
 
-/* Tapping Configuration */
-#   define TAPPING_TERM 225
-
 /* Set to infinit, which is use in USB mode by default
  */
 #    define RGB_MATRIX_TIMEOUT RGB_MATRIX_TIMEOUT_INFINITE
@@ -55,3 +52,20 @@
 #    define CKLED2001_CURRENT_TUNE \
         { 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18 }
 #endif
+
+/* Tapping Configuration */
+#   define TAPPING_TERM 225
+
+/* Debounce Configuration */
+#   undef DEBOUNCE
+#   define DEBOUNCE 5
+
+/*Define RGB Defaul Settings*/
+#   define ENABLE_RGB_MATRIX_ALPHAS_MODS
+#   define RGB_MATRIX_DEFAULT_MODE RGB_MATRIX_ALPHAS_MODS // Sets the default mode, if none has been set
+#   define RGB_MATRIX_DEFAULT_HUE 152 // Sets the default hue value, if none has been set
+#   define RGB_MATRIX_DEFAULT_SAT 255 // Sets the default saturation value, if none has been set
+#   define RGB_MATRIX_STARTUP_SPD 60
+#   define RGB_MATRIX_DEFAULT_VAL RGB_MATRIX_MAXIMUM_BRIGHTNESS // Sets the default brightness value, if none has been set
+#   undef RGB_MATRIX_TIMEOUT
+#   define RGB_MATRIX_TIMEOUT 120000
