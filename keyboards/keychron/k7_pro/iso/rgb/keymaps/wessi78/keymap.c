@@ -116,7 +116,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return true;             // Return true for normal processing of tap keycode
         case LT(0,KC_Y):
             if (!record->tap.count && record->event.pressed) {
-                tap_code16(LCMD(KC_Z)); // Intercept hold function to send CMD-Z
+                tap_code16(LCMD(KC_Y)); // Intercept hold function to send CMD-Y
                 return false;
             }
             return true;             // Return true for normal processing of tap keycode
