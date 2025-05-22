@@ -136,37 +136,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     return true;
 }
 
-//RGB Matrix Definition for each Layer
-/*layer_state_t layer_state_set_user(layer_state_t state) {
-    switch (get_highest_layer(state)) {
-    case MAC_BASE:
-        //rgb_matrix_set_color_all(0, 0, 255); //blue
-        rgb_matrix_reload_from_eeprom();
-        break;
-    case WIN_BASE:
-        //rgb_matrix_set_color_all(255, 0, 0);//red
-        rgb_matrix_reload_from_eeprom();
-        break;
-    case MAC_FN1:
-        rgb_matrix_mode_noeeprom(RGB_MATRIX_NONE);
-        rgb_matrix_set_color_all(255, 255, 0); //yellow
-        break;
-    case WIN_FN1:
-        rgb_matrix_mode_noeeprom(RGB_MATRIX_NONE);
-        rgb_matrix_set_color_all(255, 165, 0); //orange
-        break;
-    case FN2:
-        rgb_matrix_mode_noeeprom(RGB_MATRIX_NONE);
-        rgb_matrix_set_color_all(0, 255, 0); //green
-        break;
-    default: //  for any other layers, or the default layer
-        //rgb_matrix_set_color_all(255, 255, 255); //white
-        rgb_matrix_reload_from_eeprom();
-        break;
-    }
-  return state;
-}*/
-
 //RGB Control based on the method Moonlander is handling this
 extern rgb_config_t rgb_matrix_config;
 
