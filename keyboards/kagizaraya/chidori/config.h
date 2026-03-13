@@ -22,11 +22,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define MATRIX_ROWS 12
 #define MATRIX_COLS 6
 
-/* Mechanical locking support. Use KC_LCAP, KC_LNUM or KC_LSCR instead in keymap */
-#define LOCKING_SUPPORT_ENABLE
-/* Locking resynchronize hack */
-#define LOCKING_RESYNC_ENABLE
-
 /* key combination for magic key command */
 /* defined by default; to change, uncomment and set to the combination you want */
 #define IS_COMMAND() (get_mods() == (MOD_BIT(KC_LSFT) | MOD_BIT(KC_LCTL)))
@@ -48,7 +43,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //#define NO_ACTION_ONESHOT
 
 /* USB config */
-#define USB_MAX_POWER_CONSUMPTION 100
 #define USB_COUNT_SOF 0
 #define USB_INTR_CFG_SET (1 << ISC01)
 #define USB_INTR_ENABLE_BIT INT0

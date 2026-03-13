@@ -1,8 +1,13 @@
 {
   "keyboard_name": "Sweet16",
   "manufacturer": "1up Keyboards",
-  "url": "",
   "maintainer": "skullydazed",
+  "features": {
+    "bootmagic": false,
+    "extrakey": true,
+    "mousekey": true,
+    "nkro": true
+  },
   "usb": {
     "vid": "0x6F75"
   },
@@ -30,7 +35,6 @@
             {"matrix": [3, 3], "x": 3, "y": 3}
           ]
       },
-
       "LAYOUT_numpad_4x4": {
         "layout": [
           {"matrix": [0, 0], "x": 0, "y": 0},
